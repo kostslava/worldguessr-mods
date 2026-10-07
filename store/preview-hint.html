@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      html, body { margin: 0; width: 1280px; height: 800px; overflow: hidden; }
+      body { background: #222 url("bg-street.jpg") center / cover no-repeat; }
+      #wgh-hint {
+        position: absolute;
+        top: 36px;
+        left: 36px;
+        min-width: 168px;
+        zoom: 2.15;
+        padding: 10px 12px 8px;
+        color: #f4efe6;
+        background: rgba(36, 53, 40, 0.9);
+        border-radius: 10px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+        font: 13px/1.35 "Avenir Next", "Segoe UI", sans-serif;
+      }
+      .wgh-row { display: flex; gap: 8px; }
+      .wgh-label { width: 4.5em; color: #d9d0c0; }
+      .wgh-value { font-weight: 600; }
+      .wgh-credit { margin-top: 6px; color: #c4a265; font-size: 10px; line-height: 1.2; }
+    </style>
+  </head>
+  <body>
+    <aside id="wgh-hint">
+      <div class="wgh-row"><span class="wgh-label">country</span><span class="wgh-value">India</span></div>
+      <div class="wgh-row"><span class="wgh-label">area</span><span class="wgh-value">southwest</span></div>
+      <div class="wgh-row"><span class="wgh-label">city</span><span class="wgh-value">Bengaluru</span></div>
+      <div class="wgh-credit">© OpenStreetMap</div>
+    </aside>
+  </body>
+</html>

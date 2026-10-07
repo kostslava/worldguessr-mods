@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Street View Hint</title>
+    <style>
+      :root {
+        --paper: #f4efe6;
+        --ink: #243528;
+        --muted: #6d7464;
+        --line: #e3d9c8;
+        --brass: #c4a265;
+        --track: #ddd4c4;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        width: 280px;
+        color: var(--ink);
+        background:
+          radial-gradient(120% 80% at 100% 0%, rgba(196, 162, 101, 0.18), transparent 42%),
+          var(--paper);
+        font: 13px/1.4 "Avenir Next", "Segoe UI", sans-serif;
+      }
+
+      header {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        padding: 14px 16px 12px;
+      }
+
+      .mark {
+        width: 36px;
+        height: 36px;
+        flex: none;
+      }
+
+      h1 {
+        margin: 0;
+        font: 600 18px/1.1 Palatino, "Palatino Linotype", "Iowan Old Style", Georgia, serif;
+        letter-spacing: -0.02em;
+      }
+
+      header p {
+        margin: 2px 0 0;
+        color: var(--muted);
+        font-size: 11px;
+      }
+
+      section {
+        margin: 0 12px 12px;
+        padding: 4px 10px;
+        background: rgba(255, 252, 247, 0.72);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+      }
+
+      .row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        min-height: 40px;
+        border-top: 1px solid var(--line);
+      }
+
+      .row:first-child {
+        border-top: 0;
+      }
+
+      .row span {
+        font-weight: 600;
+      }
+
+      .switch {
+        position: relative;
+        width: 36px;
+        height: 22px;
+        flex: none;
+      }
+
+      .switch input {
+        position: absolute;
+        opacity: 0;
+        inset: 0;
+        margin: 0;
+        cursor: pointer;
+      }
+
+      .switch i {
+        display: block;
+        width: 36px;
+        height: 22px;
+        border-radius: 999px;
+        background: var(--track);
+        transition: background 160ms ease;
+      }
+
+      .switch i::after {
+        content: "";
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #fffdf8;
+        box-shadow: 0 1px 2px rgba(36, 53, 40, 0.25);
+        transition: transform 160ms ease;
+      }
+
+      .switch input:checked + i {
+        background: var(--ink);
+      }
+
+      .switch input:checked + i::after {
+        transform: translateX(14px);
+      }
+
+      .switch input:focus-visible + i {
+        outline: 2px solid var(--brass);
+        outline-offset: 2px;
+      }
+
+      .range {
+        padding: 8px 2px 10px;
+      }
+
+      .range label {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      output {
+        color: var(--muted);
+        font-variant-numeric: tabular-nums;
+        font-weight: 500;
+      }
+
+      input[type="range"] {
+        width: 100%;
+        margin: 8px 0 0;
+        accent-color: var(--brass);
+      }
+
+      footer {
+        margin: 0;
+        padding: 0 16px 14px;
+        color: var(--muted);
+        font-size: 11px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+        <path fill="#243528" d="M32 4 38 26 60 32 38 38 32 60 26 38 4 32 26 26Z" />
+        <circle cx="32" cy="32" r="8" fill="#c4a265" />
+        <path fill="#243528" d="M32 27.5c2.2 0 3.4 1.5 3.4 3.2 0 2.2-3.4 6.3-3.4 6.3s-3.4-4.1-3.4-6.3c0-1.7 1.2-3.2 3.4-3.2Z" />
+      </svg>
+      <div>
+        <h1>Street View Hint</h1>
+        <p>Version 1.1.0</p>
+      </div>
+    </header>
+    <section>
+      <label class="row">
+        <span>Hints</span>
+        <span class="switch">
+          <input id="enabled" type="checkbox" />
+          <i></i>
+        </span>
+      </label>
+      <label class="row">
+        <span>Drop pin on the map</span>
+        <span class="switch">
+          <input id="placePin" type="checkbox" />
+          <i></i>
+        </span>
+      </label>
+      <label class="row">
+        <span>Zoom to the area</span>
+        <span class="switch">
+          <input id="zoomMap" type="checkbox" />
+          <i></i>
+        </span>
+      </label>
+    </section>
+    <section>
+      <div class="range">
+        <label for="minKm">Closest <output id="minKmLabel">10 km</output></label>
+        <input id="minKm" type="range" min="0" max="200" step="1" value="10" />
+      </div>
+      <div class="range">
+        <label for="maxKm">Farthest <output id="maxKmLabel">20 km</output></label>
+        <input id="maxKm" type="range" min="0" max="200" step="1" value="20" />
+      </div>
+    </section>
+    <footer>The pin lands between those distances from the real spot. 0 km is exact.</footer>
+    <script src="popup.js"></script>
+  </body>
+</html>

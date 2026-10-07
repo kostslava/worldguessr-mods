@@ -1,0 +1,24 @@
+Street View Hint
+Version 1.1.0
+
+Summary
+Shows the country, compass direction, and city for the current WorldGuessr round.
+
+Description
+Street View Hint reads the current WorldGuessr round and shows three things: the country, a compass direction, and the city.
+
+You can turn each part on or off:
+- Hints in the corner of the page
+- A guess pin on the map
+- A zoom toward that area
+
+Closest and Farthest set how far the pin may sit from the real location. At 10 km and 20 km, the pin lands somewhere in that ring. Set both to 0 km for the exact spot. After the pin drops, moving it yourself keeps your spot.
+
+Place names come from OpenStreetMap. The extension does not show the raw coordinates.
+
+Upload the zip in this folder. Upload these images separately in the store listing:
+- screenshot-1280x800.jpg
+- tile-440x280.png
+- marquee-1400x560.jpg
+
+The package icon is icons/icon128.png inside the zip.

@@ -1,0 +1,54 @@
+{
+  "manifest_version": 3,
+  "name": "WorldGuessr Street View Hint",
+  "version": "1.1.0",
+  "description": "Shows the country, compass direction, and city for the current WorldGuessr round.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": ["storage", "declarativeNetRequest"],
+  "host_permissions": [
+    "https://www.worldguessr.com/*",
+    "https://worldguessr.com/*",
+    "https://nominatim.openstreetmap.org/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Street View Hint",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.worldguessr.com/*", "https://worldguessr.com/*"],
+      "js": ["page.js"],
+      "world": "MAIN",
+      "run_at": "document_start"
+    },
+    {
+      "matches": ["https://www.worldguessr.com/*", "https://worldguessr.com/*"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "nominatim_ua",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  }
+}
