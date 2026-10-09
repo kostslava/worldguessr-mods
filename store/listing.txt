@@ -1,24 +1,39 @@
 Street View Hint
-Version 1.1.0
+Version 1.5
 
-Summary
+Summary (132 chars max)
 Shows the country, compass direction, and city for the current WorldGuessr round.
 
 Description
-Street View Hint reads the current WorldGuessr round and shows three things: the country, a compass direction, and the city.
+See where you are in WorldGuessr — without spoiling the fun.
 
-You can turn each part on or off:
-- Hints in the corner of the page
-- A guess pin on the map
-- A zoom toward that area
+Street View Hint adds a quiet overlay on worldguessr.com with three clues for the current round:
 
-Closest and Farthest set how far the pin may sit from the real location. At 10 km and 20 km, the pin lands somewhere in that ring. Set both to 0 km for the exact spot. After the pin drops, moving it yourself keeps your spot.
+• Country
+• Compass area (northwest, central, southeast, and the rest)
+• City
 
-Place names come from OpenStreetMap. The extension does not show the raw coordinates.
+Toggle only what you want. Open the extension popup to turn each piece on or off:
 
-Upload the zip in this folder. Upload these images separately in the store listing:
+• Hints — the corner overlay
+• Drop pin on the map — places your guess near the real spot
+• Zoom to the area — centers the map for you
+
+Closest and Farthest control how far the pin may sit from the true location. Leave them at 10 km and 20 km for a ring around the spot, or set both to 0 km for the exact point. After the pin drops, you can still move it — the extension never presses Guess.
+
+How it works
+The extension reads the round from the Street View embed, looks up place names with OpenStreetMap Nominatim, and shows a compass sector that matches how the guess map is laid out. Large cities are measured from the city center; smaller places from the country center. Coordinates stay off the screen.
+
+A line of … means the lookup is still running. “na” means that part is not available yet (for example, no city in the data).
+
+Privacy & attribution
+No account and no API key. Lookups are cached on your computer and paced to one request per second. Place names and borders are © OpenStreetMap contributors (ODbL).
+
+---
+Store assets (not for the public listing)
+Upload the zip in this folder. Upload these images separately:
 - screenshot-1280x800.jpg
 - tile-440x280.png
 - marquee-1400x560.jpg
 
-The package icon is icons/icon128.png inside the zip.
+Package icon: icons/icon128.png inside the zip.

@@ -167,7 +167,7 @@
       </svg>
       <div>
         <h1>Street View Hint</h1>
-        <p>Version 1.1.0</p>
+        <p>Version 1.5</p>
       </div>
     </header>
     <section>
@@ -201,6 +201,19 @@
       <div class="range">
         <label for="maxKm">Farthest <output id="maxKmLabel">20 km</output></label>
         <input id="maxKm" type="range" min="0" max="200" step="1" value="20" />
+      </div>
+    </section>
+    <section>
+      <label class="row">
+        <span>Automate</span>
+        <span class="switch">
+          <input id="autoGuess" type="checkbox" />
+          <i></i>
+        </span>
+      </label>
+      <div class="range">
+        <label for="autoDelay">Delay <output id="autoDelayLabel">3 s</output></label>
+        <input id="autoDelay" type="range" min="0" max="30" step="1" value="3" />
       </div>
     </section>
     <footer>The pin lands between those distances from the real spot. 0 km is exact.</footer>

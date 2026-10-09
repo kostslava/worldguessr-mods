@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "WorldGuessr Street View Hint",
-  "version": "1.1.0",
+  "version": "1.5",
   "description": "Shows the country, compass direction, and city for the current WorldGuessr round.",
   "icons": {
     "16": "icons/icon16.png",

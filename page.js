@@ -62,6 +62,7 @@ function viewSettled(map, lat, lon) {
 const clicked = new Set();
 let options = { placePin: true, zoomMap: true, minKm: 10, maxKm: 20 };
 let activeToken = null;
+let announcedToken = null;
 let ownedToken = null;
 let userOwnedToken = null;
 let nextFlyAt = 0;
@@ -141,6 +142,7 @@ function applyGuess(lat, lon, token) {
 function selectWhenReady(lat, lon, token) {
   activeToken = token;
   ownedToken = null;
+  announcedToken = null;
   if (userOwnedToken !== token) userOwnedToken = null;
   nextFlyAt = 0;
   const spot = offsetPoint(lat, lon, options.minKm, options.maxKm);
@@ -152,6 +154,10 @@ function selectWhenReady(lat, lon, token) {
     const status = applyGuess(spot.lat, spot.lon, token);
     if (status === "stop") return;
     if (status === "hold") {
+      if (options.placePin && announcedToken !== token) {
+        announcedToken = token;
+        window.postMessage({ source: "wgh-placed", token }, "*");
+      }
       hold += 1;
       if (hold >= 6) return;
     } else {
@@ -165,7 +171,10 @@ function selectWhenReady(lat, lon, token) {
 function mapWasTouched(event) {
   const area = document.getElementById("miniMapArea");
   if (!area || !area.contains(event.target)) return;
-  if (activeToken) userOwnedToken = activeToken;
+  if (activeToken) {
+    userOwnedToken = activeToken;
+    window.postMessage({ source: "wgh-cancel", token: activeToken }, "*");
+  }
   try {
     findGuessMap().map?.stop?.();
   } catch {
